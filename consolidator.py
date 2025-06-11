@@ -58,7 +58,7 @@ def consolidate_json_access_requests(timestamp, source_dir, destination_dir):
     out_log = os.path.join(destination_dir, f"{timestamp}.nginx.access.csv")
     LOGGER.info(f"Exporting to {out_log}")
     f = open(out_log, "wb")
-    writer = csv.writer(f)
+    writer = csv.writer(f,escapechar="\\")
     for row in sorted(loglist):
         writer.writerow(row)
 
@@ -90,7 +90,7 @@ def consolidate_json_errors(timestamp, source_dir, destination_dir):
     out_log = os.path.join(destination_dir, f"{timestamp}.nginx.errors.csv")
     LOGGER.info(f"Exporting to {out_log}")
     f = open(out_log, "wb")
-    writer = csv.writer(f)
+    writer = csv.writer(f,escapechar="\\")
     for row in sorted(loglist):
         writer.writerow(row)
 
