@@ -9,17 +9,22 @@ A number of OSS libraries exist for interacting with Parquet storage; this proje
 
 ## Installation
 
-The recommended way to set up this project for development is using
-[uv](https://docs.astral.sh/uv/)
-to install and manage a Python virtual environment.
-With uv installed, install the required Python version (see `pyproject.toml`). Example:
+Dependencies for this project are managed using [uv](https://docs.astral.sh/uv/).
+With uv installed, change into the project directory and run:
 
-    uv python install 3.12
-
-Change into the project directory and run:
-
-    uv python pin 3.12
     uv sync
+
+Activate the virtualenv like so:
+
+    source .venv/bin/activate
+
+To run Python commands in the activated virtualenv, thereafter run them like so:
+
+    python manage.py
+
+Manage new or updated project dependencies with uv also, like so:
+
+    uv add newpackage==1.0
 
 ## Usage
 
