@@ -5,7 +5,7 @@ name: Build multi-architecture Docker Image with separate GitHub Runners and run
 on:
   push:
     branches:
-      - master
+      - main
     tags:
       - '*'
 env:
@@ -201,7 +201,7 @@ jobs:
           annotations: |
             type=org.opencontainers.image.description,value=${{ github.event.repository.description || 'No description provided' }}
           tags: |
-            type=raw,value=latest,enable=${{ github.ref_name == 'master' }}
+            type=raw,value=latest,enable=${{ github.ref_name == 'main' }}
             type=semver,pattern={{version}}
 
       - name: Set up Docker Buildx
