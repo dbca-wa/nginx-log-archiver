@@ -1,23 +1,21 @@
 # syntax=docker/dockerfile:1
 # Prepare the base environment.
-FROM python:3.12-slim-bookworm AS builder_base
+FROM python:3.13-slim-bookworm AS builder_base
 
 ENV UV_LINK_MODE=copy \
   UV_COMPILE_BYTECODE=1 \
   UV_PYTHON_DOWNLOADS=never \
   UV_PROJECT_ENVIRONMENT=/app/.venv
 
-COPY --from=ghcr.io/astral-sh/uv:0.6 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.7 /uv /uvx /bin/
 COPY pyproject.toml uv.lock /_lock/
 RUN --mount=type=cache,target=/root/.cache \
   cd /_lock && \
-  uv sync \
-  --frozen \
-  --no-group dev
+  uv sync --frozen --no-group dev
 
 ##################################################################################
 
-FROM python:3.12-slim-bookworm
+FROM python:3.13-slim-bookworm
 LABEL org.opencontainers.image.authors=asi@dbca.wa.gov.au
 LABEL org.opencontainers.image.source=https://github.com/dbca-wa/nginx-log-archiver
 
