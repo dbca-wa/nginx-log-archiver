@@ -99,11 +99,9 @@ def az_dns_zone_list(az_cli):
     return data
 
 
-def az_dns_recordset_list(az_cli, resource_group: str, zone_name: str):
+def az_dns_recordset_list(az_cli, zone_name: str, resource_group: str = "oim-appservices"):
     outfile = TemporaryFile("r+")
-    az_cli.invoke(
-        ["network", "dns", "record-set", "cname", "list", "--resource-group", resource_group, "--zone-name", zone_name], out_file=outfile
-    )
+    az_cli.invoke(["network", "dns", "record-set", "list", "--resource-group", resource_group, "--zone-name", zone_name], out_file=outfile)
     outfile.flush()
     outfile.seek(0)
     data = json.load(outfile)
@@ -131,16 +129,21 @@ def get_all_zone_records():
     az_login(az)
     zones = az_dns_zone_list(az)
     zone_names = [zone["name"] for zone in zones]
-    resource_group = "oim-appservices"
-
     recordsets = []
+
     for zone_name in zone_names:
         LOGGER.info(f"Checking {zone_name} (Azure)")
-        zone_recordsets = az_dns_recordset_list(az, resource_group, zone_name)
+        zone_recordsets = az_dns_recordset_list(az, zone_name)
         recordsets += zone_recordsets
 
+    # Extract A and CNAME records.
     for record in recordsets:
-        zone_records.append((record["fqdn"], record["CNAMERecord"]["cname"], record["type"], "Azure"))
+        if record["type"] == "Microsoft.Network/dnszones/A":
+            if "ARecords" in record and record["ARecords"]:
+                for obj in record["ARecords"]:
+                    zone_records.append((record["fqdn"], obj["ipv4Address"], record["type"], "Azure"))
+        elif record["type"] == "Microsoft.Network/dnszones/CNAME":
+            zone_records.append((record["fqdn"], record["CNAMERecord"]["cname"], record["type"], "Azure"))
 
     # NGINX
     repo_dest = TemporaryDirectory()
