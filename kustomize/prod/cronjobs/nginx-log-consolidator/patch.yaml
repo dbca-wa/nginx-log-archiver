@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: log-archiver-cronjob
+spec:
+  # 10 minutes past the hour, every day
+  schedule: '10 * * * *'
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: log-archiver-cronjob
+              command:
+                - /bin/bash
+                - '-c'
+                - >-
+                  python consolidator.py -t $(date +%Y%m%d%H -d "1 hour ago") -s az-nginx-003,az-nginx-005
+              args:
+              envFrom:
+                - secretRef:
+                    name: log-archiver-env-prod

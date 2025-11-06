@@ -1,0 +1,53 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: log-archiver-cronjob
+  labels:
+    app: log-archiver-cronjob
+spec:
+  schedule: ''
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 5
+  jobTemplate:
+    spec:
+      parallelism: 1
+      activeDeadlineSeconds: 300
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: log-archiver-cronjob
+              image: ghcr.io/dbca-wa/nginx-log-archiver
+              imagePullPolicy: IfNotPresent
+              command: ['python']
+              args: ['--version']
+              env:
+                - name: TZ
+                  value: 'Australia/Perth'
+              securityContext:
+                runAsNonRoot: true
+                runAsUser: 10001
+                privileged: false
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: true
+                capabilities:
+                  drop:
+                    - ALL
+              volumeMounts:
+                - mountPath: /tmp
+                  name: tmpfs-ram
+                - mountPath: /app/.azure
+                  name: az-cli-config
+          volumes:
+            - name: tmpfs-ram
+              emptyDir:
+                medium: 'Memory'
+            - name: az-cli-config
+              emptyDir:
+                medium: 'Memory'
+          automountServiceAccountToken: false
+          tolerations:
+            - key: arch
+              operator: Equal
+              value: arm64
+              effect: NoSchedule

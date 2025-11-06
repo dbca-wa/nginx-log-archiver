@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: log-archiver-cronjob
+spec:
+  # AWST 08:00, every day
+  schedule: '0 16 * * *'
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: log-archiver-cronjob
+              args: ['logfile_clean.py', '--container', 'access-logs-json', '--days', '21', '--extension', 'json']
+              envFrom:
+                - secretRef:
+                    name: log-archiver-env-prod

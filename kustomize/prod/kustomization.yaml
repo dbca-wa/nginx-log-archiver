@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+nameSuffix: -prod
+resources:
+  - cronjobs/dns-zone-subdomain-report
+  - cronjobs/fastly-log-consolidator
+  - cronjobs/nginx-conf-parser
+  - cronjobs/nginx-log-archiver
+  - cronjobs/nginx-log-cleanup
+  - cronjobs/nginx-log-consolidator
+secretGenerator:
+  - name: log-archiver-env
+    type: Opaque
+    envs:
+      - .env
+generatorOptions:
+  disableNameSuffixHash: true
+labels:
+  - includeSelectors: true
+    pairs:
+      variant: prod
+images:
+  - name: ghcr.io/dbca-wa/nginx-log-archiver
+    newTag: 1.1.0

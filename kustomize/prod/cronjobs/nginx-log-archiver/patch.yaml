@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: log-archiver-cronjob
+spec:
+  # AWST 04:00, every day
+  schedule: '0 12 * * *'
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: log-archiver-cronjob
+              command:
+                - /bin/bash
+                - '-c'
+                - >-
+                  python archiver.py --datestamp $(date +%Y%m%d -d "2 years ago") --delete-source
+              args:
+              envFrom:
+                - secretRef:
+                    name: log-archiver-env-prod
