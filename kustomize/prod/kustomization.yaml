@@ -21,4 +21,4 @@ labels:
       variant: prod
 images:
   - name: ghcr.io/dbca-wa/nginx-log-archiver
-    newTag: 1.1.0
+    newTag: 1.1.1

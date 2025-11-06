@@ -1,6 +1,6 @@
 [project]
 name = "nginx-access-log-archiver"
-version = "1.1.0"
+version = "1.1.1"
 description = "Utility for archiving the department's preserved Nginx access logs in the Parquet column-oriented data file format"
 authors = [{ name = "Ashley Felton", email = "ashley.felton@dbca.wa.gov.au" }]
 readme = "README.md"
@@ -8,7 +8,7 @@ license = "Apache-2.0"
 requires-python = ">=3.13,<4.0"
 dependencies = [
   "python-dotenv==1.2.1",
-  "azure-storage-blob==12.27.0",
+  "azure-storage-blob==12.27.1",
   "pyarrow==22.0.0",
   "orjson==3.11.4",
   "unicodecsv==0.14.1",
