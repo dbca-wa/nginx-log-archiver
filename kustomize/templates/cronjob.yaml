@@ -51,3 +51,13 @@ spec:
               operator: Equal
               value: arm64
               effect: NoSchedule
+          affinity:
+            nodeAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 1
+                  preference:
+                    matchExpressions:
+                      - key: arch
+                        operator: In
+                        values:
+                          - arm64
