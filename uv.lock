@@ -43,6 +43,36 @@ wheels = [
 ]
 
 [[package]]
+name = "azure-ai-agents"
+version = "1.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "azure-core" },
+    { name = "isodate" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/39/98/bbe2e9e5b0a934be1930545025bf7018ebc4cc33b10134cc3314d6487076/azure_ai_agents-1.1.0.tar.gz", hash = "sha256:eb9d7226282d03206c3fab3f3ee0a2fc71e0ad38e52d2f4f19a92c56ed951aea", size = 303656, upload-time = "2025-08-05T19:02:26.7Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e6/31/43750555bf20d3d2d7589fcd775c96ce7c96e58e208b81c1ed6d4bad6c5f/azure_ai_agents-1.1.0-py3-none-any.whl", hash = "sha256:f660bb0d564aeb88e33140ebc1e4700d2e36e2e12ee60c3346915d702a9310a9", size = 191126, upload-time = "2025-08-05T19:02:28.178Z" },
+]
+
+[[package]]
+name = "azure-ai-projects"
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "azure-ai-agents" },
+    { name = "azure-core" },
+    { name = "azure-storage-blob" },
+    { name = "isodate" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/dd/95/9c04cb5f658c7f856026aa18432e0f0fa254ead2983a3574a0f5558a7234/azure_ai_projects-1.0.0.tar.gz", hash = "sha256:b5f03024ccf0fd543fbe0f5abcc74e45b15eccc1c71ab87fc71c63061d9fd63c", size = 130798, upload-time = "2025-07-31T02:09:27.912Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b5/db/7149cdf71e12d9737f186656176efc94943ead4f205671768c1549593efe/azure_ai_projects-1.0.0-py3-none-any.whl", hash = "sha256:81369ed7a2f84a65864f57d3fa153e16c30f411a1504d334e184fb070165a3fa", size = 115188, upload-time = "2025-07-31T02:09:29.362Z" },
+]
+
+[[package]]
 name = "azure-appconfiguration"
 version = "1.7.2"
 source = { registry = "https://pypi.org/simple" }
@@ -72,10 +102,11 @@ wheels = [
 
 [[package]]
 name = "azure-cli"
-version = "2.79.0"
+version = "2.81.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "antlr4-python3-runtime" },
+    { name = "azure-ai-projects" },
     { name = "azure-appconfiguration" },
     { name = "azure-batch" },
     { name = "azure-cli-core" },
@@ -178,14 +209,14 @@ dependencies = [
     { name = "websocket-client" },
     { name = "xmltodict" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/be/cb/b71b800cea26c58d5fcc84ae7bc63d6bee3eaf86b55e46dab8caeb7cf5c7/azure_cli-2.79.0.tar.gz", hash = "sha256:2c039f1fb1c84efe093233838146a0ce5fd41b4ec65d6a08b37ef0f903dd29c0", size = 8603692, upload-time = "2025-11-04T03:42:47.549Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/8f/3d/fe1e1c733336bd6fd568304b5a5d63a813d0de94f146063309de50a7c1e8/azure_cli-2.81.0.tar.gz", hash = "sha256:38e2296c4c143627080e7e07674ab2055890dab9d74dc0965ba79d145d38be30", size = 8802529, upload-time = "2025-12-02T05:43:18.587Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ac/f9/1d55b3bfe1ef3540a3308d7b6037dbab51f7592cf7c027d12e33922e60cb/azure_cli-2.79.0-py3-none-any.whl", hash = "sha256:36cb5c7a31a05c68d5a21b9a1ee799c14d360c592fe1f26bd511cb1acd02bd62", size = 12217380, upload-time = "2025-11-04T03:42:55.872Z" },
+    { url = "https://files.pythonhosted.org/packages/3b/8a/f6b81677ddf596f7b9ea54803d9c86a82fac8e0aba429737df355c6f3f68/azure_cli-2.81.0-py3-none-any.whl", hash = "sha256:183f72688556c1ae7260d9c75b1c5ec29231f0f8adc7816030a75b334d8e193c", size = 12427200, upload-time = "2025-12-02T05:43:23.603Z" },
 ]
 
 [[package]]
 name = "azure-cli-core"
-version = "2.79.0"
+version = "2.81.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "argcomplete" },
@@ -209,9 +240,9 @@ dependencies = [
     { name = "pyopenssl" },
     { name = "requests", extra = ["socks"] },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/15/8d/9f760f02b9b4837e9e1dffa78c19f336d1ade7ffecf6b8a61314d6b4eff8/azure_cli_core-2.79.0.tar.gz", hash = "sha256:0db55ade1e7b2902cdc41011aead1549c1a6d531529fbd898ad6fbbb38dd7973", size = 230755, upload-time = "2025-11-04T03:42:50.719Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ab/65/427ba9eeec85ca0f86357aa73eef14b16b191d4236181ceb6bd8be5ea687/azure_cli_core-2.81.0.tar.gz", hash = "sha256:bae30dcd6f8c1883c8e32fbcb7c43dbe2dbfe522e428c7629edef271933f7b1e", size = 230728, upload-time = "2025-12-02T05:43:21.057Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f8/fc/6817663a0bae8f0b24b5dbef1467ac83abfe31a44963743f94f4435916d0/azure_cli_core-2.79.0-py3-none-any.whl", hash = "sha256:2f6060c23162f97ac6644e3a10f624503b9b127f644458737c50504385508c3f", size = 261331, upload-time = "2025-11-04T03:42:57.951Z" },
+    { url = "https://files.pythonhosted.org/packages/ad/c4/3e4758c05e003fdb50d0a3907395a19ffee160b42da96b7b3467b25719b1/azure_cli_core-2.81.0-py3-none-any.whl", hash = "sha256:2c711ff890d003b10bb40f932d008a872c6451324ee533fbbb861c950c3f0f93", size = 261327, upload-time = "2025-12-02T05:43:25.927Z" },
 ]
 
 [[package]]
@@ -520,17 +551,16 @@ wheels = [
 
 [[package]]
 name = "azure-mgmt-cognitiveservices"
-version = "13.7.0"
+version = "14.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "azure-common" },
     { name = "azure-mgmt-core" },
-    { name = "isodate" },
+    { name = "msrest" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f7/4b/428c41c3aacad9506e65bd67055cc8ea950857ce4161b6bd895ed44e37f2/azure_mgmt_cognitiveservices-13.7.0.tar.gz", hash = "sha256:48a5a44c15c6768bad238011aaac83a806ceb8ace1b51b8043e35b39a9167a19", size = 174735, upload-time = "2025-07-21T06:24:49.537Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/fa/8e/9fcfdd507413a2536c5458b40942705ea8d74fe4e17f05fd1c32bb0225a9/azure_mgmt_cognitiveservices-14.1.0.tar.gz", hash = "sha256:915191374d0adb443863c20aaea2c9f3b9d558a849ac2b78f152249262fdcaf8", size = 184444, upload-time = "2025-10-24T07:28:14.229Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d3/72/0bccfe59ac552ff2434d2e69ea595d69b47bda81b507cbde2372363dc8a4/azure_mgmt_cognitiveservices-13.7.0-py3-none-any.whl", hash = "sha256:9683c436781b8294fe85410da4d22323128c3d68bc141196addbdf07b048dfb4", size = 271603, upload-time = "2025-07-21T06:24:50.951Z" },
+    { url = "https://files.pythonhosted.org/packages/d3/25/ed6bbc01a03991255dd22aa41091360d225f1be20c88710af0f4a6c27459/azure_mgmt_cognitiveservices-14.1.0-py3-none-any.whl", hash = "sha256:3c0eecc00d183842a11d754f4f5c3328ff86f2d6c0a2b81b28dd7e073680258e", size = 290096, upload-time = "2025-10-24T07:28:15.766Z" },
 ]
 
 [[package]]
@@ -580,16 +610,16 @@ wheels = [
 
 [[package]]
 name = "azure-mgmt-containerservice"
-version = "40.0.0"
+version = "40.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "azure-mgmt-core" },
     { name = "msrest" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f1/d8/57a59d50f2287809af2f5a3dd4092ab58a6dfd98b992c3a137911a3c50d2/azure_mgmt_containerservice-40.0.0.tar.gz", hash = "sha256:6c52a0cd5d55520ef028ea90b72bd8d1328f80d0ce697434ef61c5068626af6f", size = 188968, upload-time = "2025-10-10T08:42:18.865Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c2/c5/b85f3b1e1432cc031fd1cd22b5963a648ddee88c637e57c43936be39d369/azure_mgmt_containerservice-40.1.0.tar.gz", hash = "sha256:89a6caf507d340df472dc8dcfe217c1e098cdd8e71353db892efc284330e2f8e", size = 205683, upload-time = "2025-10-31T07:58:15.246Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a5/ee/0a88a2105e01862dfa185b951daafbcf6c142725e5ad85f9bc4b16d6e42b/azure_mgmt_containerservice-40.0.0-py3-none-any.whl", hash = "sha256:08278030ac5c8cc840dd121a36a0d1b1dd7d930a9427b4c1df103d6758377ca4", size = 209345, upload-time = "2025-10-10T08:42:20.242Z" },
+    { url = "https://files.pythonhosted.org/packages/c2/44/1764bbbb0de34e8b1d687af29bb0e625a65f965c6663cea858626eb9412e/azure_mgmt_containerservice-40.1.0-py3-none-any.whl", hash = "sha256:c09a6237624505a121af1ef5a939466b410d47f1d4987c95187651aca15522a7", size = 225920, upload-time = "2025-10-31T07:58:17.095Z" },
 ]
 
 [[package]]
@@ -1944,7 +1974,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "azure-cli", specifier = "==2.79.0" },
+    { name = "azure-cli", specifier = "==2.81.0" },
     { name = "azure-storage-blob", specifier = "==12.27.1" },
     { name = "crossplane", specifier = "==0.5.8" },
     { name = "orjson", specifier = "==3.11.5" },
