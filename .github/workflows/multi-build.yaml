@@ -1,6 +1,6 @@
 # This workflow builds a multi-arch Docker image using GitHub Actions and separated Github Runners with native support for ARM64 and AMD64 architectures.
 # It uses Docker Buildx to build and push the image to GitHub Container Registry (GHCR).
-name: Build multi-architecture Docker Image with separate GitHub Runners and run vulnerability scan
+name: Build multi-architecture Docker image with separate GitHub runners and run vulnerability scan
 
 on:
   schedule:
@@ -115,6 +115,15 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log in to Docker Hardened Images Registry
+        # This step logs into the Docker Hardened Images Registry in order to download the required images.
+        # It uses Actions secrets that must be set on the repository in GitHub.
+        uses: docker/login-action@v3
+        with:
+          registry: dhi.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build and push by digest
         # This step builds and pushes the Docker image using Buildx.
