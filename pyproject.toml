@@ -10,7 +10,7 @@ dependencies = [
   "python-dotenv==1.2.1",
   "azure-storage-blob==12.28.0",
   "pyarrow==23.0.0",
-  "orjson==3.11.5",
+  "orjson==3.11.6",
   "unicodecsv==0.14.1",
   "requests==2.32.5",
   "crossplane==0.5.8",
