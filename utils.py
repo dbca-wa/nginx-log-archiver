@@ -2,11 +2,12 @@ import logging
 import os
 import subprocess
 import sys
+from typing import List, Literal, Optional
 
 from azure.storage.blob import BlobClient, ContainerClient
 
 
-def configure_logging(log_level=None, azure_log_level=None):
+def configure_logging(log_level: Optional[int] = None, azure_log_level: Optional[int] = None) -> logging.Logger:
     """Configure logging for the default logger and for the `azure` logger."""
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
@@ -30,7 +31,9 @@ def configure_logging(log_level=None, azure_log_level=None):
     return logger
 
 
-def get_blob_client(conn_str, container_name, blob_name, max_put=16 * 1024 * 1024, conn_timeout=60):
+def get_blob_client(
+    conn_str: str, container_name: str, blob_name: str, max_put: int = 16 * 1024 * 1024, conn_timeout: int = 60
+) -> BlobClient:
     """
     Return a BlobClient class having defaults to account for a slower internet connection.
     The parent class defaults are 64MB and 20s.
@@ -46,8 +49,14 @@ def get_blob_client(conn_str, container_name, blob_name, max_put=16 * 1024 * 102
 
 
 def download_logs(
-    timestamp, hosts, destination_dir, container_name, conn_str, nginx_host_log=False, enable_logging=True, slow_connection=False
-):
+    timestamp: str,
+    hosts: str,
+    destination_dir: str,
+    container_name: str,
+    conn_str: str,
+    nginx_host_log: bool = False,
+    enable_logging: bool = True,
+) -> Literal[True] | None:
     """Given the passed in timestamp, hosts list and destination directory, download logs from blob storage."""
     if enable_logging:
         logger = logging.getLogger()
@@ -76,10 +85,7 @@ def download_logs(
         else:
             dest_path = os.path.join(destination_dir, name)
 
-        if slow_connection:
-            blob_client = get_blob_client(conn_str, container_name, blob.name)
-        else:
-            blob_client = BlobClient.from_connection_string(conn_str, container_name, blob.name)
+        blob_client = get_blob_client(conn_str, container_name, blob.name)
 
         if enable_logging:
             logger.info(f"Downloading blob {blob.name} ({container_name} container) to {dest_path}")
@@ -97,15 +103,19 @@ def download_logs(
     return True
 
 
-def upload_log(source_path, container_name, conn_str, overwrite=True, enable_logging=True, blob_name="", slow_connection=False):
+def upload_log(
+    source_path: str,
+    container_name: str,
+    conn_str: str,
+    overwrite: bool = True,
+    enable_logging: bool = True,
+    blob_name: str = "",
+):
     """Upload a single log at `source_path` to Azure blob storage (`blob_name` destination name is optional)."""
     if not blob_name:
         blob_name = os.path.basename(source_path)
 
-    if slow_connection:
-        blob_client = get_blob_client(conn_str, container_name, blob_name)
-    else:
-        blob_client = BlobClient.from_connection_string(conn_str, container_name, blob_name)
+    blob_client = get_blob_client(conn_str, container_name, blob_name)
 
     if enable_logging:
         logger = logging.getLogger()
@@ -115,7 +125,7 @@ def upload_log(source_path, container_name, conn_str, overwrite=True, enable_log
         blob_client.upload_blob(data, overwrite=overwrite, validate_content=True)
 
 
-def clone_repo(dest_path, github_access_token, github_repo, enable_logging=True):
+def clone_repo(dest_path: str, github_access_token: str, github_repo: str, enable_logging: bool = True) -> List | Literal[False]:
     """Clone the GitHub repository to `dest_path`."""
     cmd = f"git clone --quiet --depth=1 https://{github_access_token}@{github_repo} {dest_path}"
     if enable_logging:
