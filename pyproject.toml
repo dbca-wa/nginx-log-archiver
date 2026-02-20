@@ -9,7 +9,7 @@ requires-python = ">=3.13,<4.0"
 dependencies = [
   "python-dotenv==1.2.1",
   "azure-storage-blob==12.28.0",
-  "pyarrow==23.0.0",
+  "pyarrow==23.0.1",
   "orjson==3.11.7",
   "unicodecsv==0.14.1",
   "requests==2.32.5",
