@@ -259,5 +259,5 @@ if __name__ == "__main__":
     parse_dns_zones(
         container_dest=args.container,
         blob_name=args.blob_name,
-        include_redirects=not args.include_redirects,
+        include_redirects=not args.exclude_redirects,
     )
