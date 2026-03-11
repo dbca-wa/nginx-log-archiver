@@ -2,6 +2,8 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: log-archiver-cronjob
+  annotations:
+    field.cattle.io/description: 'Consolidates hourly Fastly proxy logs from mutiple endpoints into a single file and uploads this to blob storage'
 spec:
   # 15 minutes past the hour, every day
   schedule: '15 * * * *'
