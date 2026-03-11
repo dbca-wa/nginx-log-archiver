@@ -86,7 +86,7 @@ jobs:
         # The metadata includes information such as the image name, tags, and labels.
         # The metadata will be used later in the workflow to build and push the Docker image.
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.GHCR_IMAGE }}
 
@@ -133,7 +133,7 @@ jobs:
         # The cache-from and cache-to options are used to enable caching for the build process.
         # The cache is stored in GitHub Actions cache and is scoped to the repository, branch, and platform.
         id: build
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         env:
           DOCKER_BUILDKIT: 1
         with:
@@ -160,7 +160,7 @@ jobs:
         # It uses the actions/upload-artifact action to upload the file created in the previous step.
         # The artifact is named digests-${{ env.PLATFORM_PAIR }}, where PLATFORM_PAIR is the platform name with '/' replaced by '-'.
         # The artifact is retained for 1 day, and if no files are found, it will throw an error.
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: digests-${{ env.PLATFORM_PAIR }}
           path: /tmp/digests/*
@@ -196,7 +196,7 @@ jobs:
         # This step downloads the digest files uploaded in the build job.
         # It uses the actions/download-artifact action to download the artifacts with the pattern digests-*.
         # The downloaded files are merged into the /tmp/digests directory.
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           path: /tmp/digests
           pattern: digests-*
@@ -207,7 +207,7 @@ jobs:
         # It uses the docker/metadata-action to create metadata based on the repository information.
         # The metadata includes information such as the image name, tags, and labels.
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.GHCR_IMAGE }}
           annotations: |
@@ -292,7 +292,7 @@ jobs:
       security-events: write
     steps:
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@0.34.2
         env:
           TRIVY_DB_REPOSITORY: public.ecr.aws/aquasecurity/trivy-db
         with:
