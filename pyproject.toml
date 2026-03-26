@@ -12,7 +12,7 @@ dependencies = [
   "pyarrow==23.0.1",
   "orjson==3.11.7",
   "unicodecsv==0.14.1",
-  "requests==2.32.5",
+  "requests==2.33.0",
   "crossplane==0.5.8",
   "azure-cli==2.81.0",
   "tldextract==5.3.1",
