@@ -1,6 +1,6 @@
 [project]
 name = "nginx-access-log-archiver"
-version = "1.1.4"
+version = "1.1.5"
 description = "Utility for archiving the department's preserved Nginx access logs in the Parquet column-oriented data file format"
 authors = [{ name = "Ashley Felton", email = "ashley.felton@dbca.wa.gov.au" }]
 readme = "README.md"
@@ -12,14 +12,14 @@ dependencies = [
   "pyarrow==23.0.1",
   "orjson==3.11.7",
   "unicodecsv==0.14.1",
-  "requests==2.32.5",
+  "requests==2.33.0",
   "crossplane==0.5.8",
   "azure-cli==2.81.0",
   "tldextract==5.3.1",
 ]
 
 [dependency-groups]
-dev = ["ipython>=9.11.0", "ipdb>=0.13.13"]
+dev = ["ipython>=9.12.0", "ipdb>=0.13.13"]
 
 [tool.uv]
 prerelease = "allow"
