@@ -13,7 +13,7 @@ dependencies = [
   "unicodecsv==0.14.1",
   "requests==2.34.2",
   "crossplane==0.5.8",
-  "azure-cli==2.87.0",
+  "azure-cli==2.90.0",
   "tldextract==5.3.1",
 ]
 
