@@ -14,7 +14,7 @@ dependencies = [
   "requests==2.34.2",
   "crossplane==0.5.8",
   "azure-cli==2.87.0",
-  "tldextract==5.3.1",
+  "tldextract==5.3.2",
 ]
 
 [dependency-groups]
