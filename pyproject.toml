@@ -8,13 +8,13 @@ license = "Apache-2.0"
 requires-python = ">=3.13,<4.0"
 dependencies = [
   "python-dotenv==1.2.3",
-  "pyarrow==24.0.0",
+  "pyarrow==25.0.1",
   "orjson==3.12.0",
   "unicodecsv==0.14.1",
   "requests==2.34.2",
   "crossplane==0.5.8",
-  "azure-cli==2.87.0",
-  "tldextract==5.3.1",
+  "azure-cli==2.90.0",
+  "tldextract==5.3.2",
 ]
 
 [dependency-groups]
