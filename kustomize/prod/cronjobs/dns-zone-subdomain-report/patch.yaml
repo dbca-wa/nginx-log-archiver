@@ -3,8 +3,7 @@ kind: CronJob
 metadata:
   name: log-archiver-cronjob
 spec:
-  # AWST 08:05 every day
-  schedule: '5 16 * * *'
+  schedule: '5 8 * * *'
   jobTemplate:
     spec:
       template:

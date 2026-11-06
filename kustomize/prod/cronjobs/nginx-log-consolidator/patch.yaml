@@ -3,7 +3,6 @@ kind: CronJob
 metadata:
   name: log-archiver-cronjob
 spec:
-  # 10 minutes past the hour, every day
   schedule: '10 * * * *'
   jobTemplate:
     spec:
